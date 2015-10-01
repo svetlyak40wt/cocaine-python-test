@@ -1,0 +1,39 @@
+{
+  "name": "python-example", 
+  "version": "v0-1-0-cocaine-4", 
+  "members": {
+    "art": [
+      "admin", 
+      "developer"
+    ]
+  }, 
+  "clusters": {
+    "production": {
+      "profile": "docker-one", 
+      "manifest": {
+        "environment": {
+          "YANDEX_ENVIRONMENT": "production"
+        }, 
+        "slave": "/app/app.py"
+      }
+    }, 
+    "testing": {
+      "profile": "docker-one", 
+      "manifest": {
+        "environment": {
+          "YANDEX_ENVIRONMENT": "testing"
+        }, 
+        "slave": "/app/app.py"
+      }
+    }, 
+    "unstable": {
+      "profile": "docker-one", 
+      "manifest": {
+        "environment": {
+          "YANDEX_ENVIRONMENT": "stress"
+        }, 
+        "slave": "/app/app.py"
+      }
+    }
+  }
+}
