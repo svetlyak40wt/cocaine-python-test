@@ -1,6 +1,6 @@
 FROM ubuntu:precise
 
-RUN apt-get update && apt-get install -y python-pip
-RUN pip install https://github.com/cocaine/cocaine-framework-python/archive/v0.12.zip?rnd=2
+RUN apt-get update && apt-get install git python-flask msgpack-python python-pip -y
+RUN pip install git+git://github.com/cocaine/cocaine-framework-python
 
-ADD . /app
+COPY . /app

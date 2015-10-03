@@ -1,33 +1,26 @@
 #!/usr/bin/env python
 
-from cocaine.worker import Worker
-from cocaine.logger import Logger
-from cocaine.decorators import http
+from flask import Flask
 
-import uuid
+from cocaine.services import SyncService
 
-log = Logger()
+app = Flask(__name__)
 
-@http
-def http_echo(request, response):
+NAMESPACE = "testnamespace"
+KEY = "testkey"
 
-    req_id = uuid.uuid4().hex
-
-    log.info("request %s: start" % req_id)
-
-    req = yield request.read()
-
-    log.info("request %s: got body of %s bytes" % (req_id, len(req.body)))
-
-    response.write_head(200, {})
-
-    log.info("request %s: responding with original body" % req_id)
-
-    response.write(req.body)
-
-    log.info("request %s: done" % req_id)
+storage = SyncService("storage")
 
 
-if __name__ == '__main__':
-    W = Worker()
-    W.run({"http": http_echo})
+@app.route('/')
+def hello(name=None):
+    return "HELLO!"
+
+
+@app.route('/read')
+def read():
+    data = storage.run_sync(storage.read(NAMESPACE, KEY).rx.get(), timeout=1)
+    return data
+
+if __name__ == "__main__":
+    app.run(debug=True)

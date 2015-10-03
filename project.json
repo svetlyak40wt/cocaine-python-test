@@ -1,6 +1,6 @@
 {
   "name": "python-example", 
-  "version": "v0-1-0-cocaine-4", 
+  "version": "v0-1-0-cocaine-9", 
   "members": {
     "art": [
       "admin", 
@@ -14,7 +14,7 @@
         "environment": {
           "YANDEX_ENVIRONMENT": "production"
         }, 
-        "slave": "/app/app.py"
+        "slave": "/main.py"
       }
     }, 
     "testing": {
@@ -23,7 +23,7 @@
         "environment": {
           "YANDEX_ENVIRONMENT": "testing"
         }, 
-        "slave": "/app/app.py"
+        "slave": "/main.py"
       }
     }, 
     "unstable": {
@@ -32,7 +32,7 @@
         "environment": {
           "YANDEX_ENVIRONMENT": "stress"
         }, 
-        "slave": "/app/app.py"
+        "slave": "/main.py"
       }
     }
   }
