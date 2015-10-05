@@ -5,7 +5,7 @@ from cocaine.decorators import http
 
 import uuid
 
-log = Logger()
+log = Logger(endpoints=(("2a02:6b8:0:1a16:556::200", 10053),))
 
 @http
 def http_echo(request, response):
